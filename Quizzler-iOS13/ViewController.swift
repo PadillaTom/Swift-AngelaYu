@@ -16,9 +16,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var falseBtn: UIButton!
     
     let questions = [
-        ["2 + 4 is equal to 6", "True"],
-        ["5 - 3 is greater than 1", "True"],
-        ["3 + 8 is less than 10", "False"],
+        Question(text: "2 + 4 is equal to 6", answer: "True"),
+        Question(text: "5 - 3 is greater than 1", answer: "True"),
+        Question(text: "3 + 8 is less than 10", answer: "False")
     ]
     
     var currQuestionIndex = 0
@@ -30,10 +30,11 @@ class ViewController: UIViewController {
         updateUI()
     }
     
-    
     @IBAction func answerBtnPressed(_ sender: UIButton) {
+        
+        let currQuestion = questions[currQuestionIndex]
         let userAnswer = sender.currentTitle
-        let actualAnswer = questions[currQuestionIndex][1]
+        let actualAnswer = currQuestion.answer
         
         if userAnswer == actualAnswer {
             print("Correct")
@@ -52,7 +53,7 @@ class ViewController: UIViewController {
     }
     
     func updateUI() {
-        questionLabel.text = questions[currQuestionIndex][0]
+        questionLabel.text = questions[currQuestionIndex].text
     }
     
 
